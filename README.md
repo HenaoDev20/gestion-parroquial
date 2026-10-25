@@ -77,3 +77,10 @@ npm test
 
 
 
+## Desarrollo colaborativo
+
+Este proyecto utiliza Git y GitHub para
+el control de versiones.
+
+Los cambios se realizan mediante ramas
+y se integran utilizando Pull Requests.
