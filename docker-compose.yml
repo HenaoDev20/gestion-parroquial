@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: parroquia
+      POSTGRES_PASSWORD: parroquia_dev
+      POSTGRES_DB: parroquia
+    ports:
+      - "5433:5432"
+    volumes:
+      - parroquia_pg:/var/lib/postgresql/data
+      - ./database/001_schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+volumes:
+  parroquia_pg:

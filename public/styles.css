@@ -1,0 +1,214 @@
+
+/* ============================================================
+   1. CONFIGURACIÓN GENERAL
+   ============================================================ */
+
+:root {
+    font-family: system-ui, Arial, sans-serif;
+    color: #142536;
+    background: #f2f5f9;
+}
+
+
+/* ============================================================
+   2. CUERPO DE LA PÁGINA
+   ============================================================ */
+
+body {
+    margin: 0;
+}
+
+
+/* ============================================================
+   3. CONTENEDOR PRINCIPAL
+   ============================================================ */
+
+main {
+    max-width: 1050px;
+    margin: auto;
+    padding: 24px;
+}
+
+
+/* ============================================================
+   4. ENCABEZADO
+   ============================================================ */
+
+header {
+    background: #143859;
+    color: white;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+
+/* ============================================================
+   5. SECCIONES DE CONTENIDO
+   ============================================================ */
+
+section {
+    background: white;
+    padding: 22px;
+    margin-top: 18px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px #0001;
+}
+
+
+/* ============================================================
+   6. FORMULARIOS
+   ============================================================ */
+
+form {
+
+    /* Organizar los campos mediante CSS Grid. */
+    display: grid;
+
+    /* Crear columnas adaptables según el espacio disponible. */
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(210px, 1fr)
+    );
+
+    /* Separación entre los campos. */
+    gap: 14px;
+}
+
+
+/* ============================================================
+   7. ETIQUETAS DE LOS FORMULARIOS
+   ============================================================ */
+
+label {
+
+    /* Organizar el texto y el campo en filas separadas. */
+    display: grid;
+
+    /* Separación entre etiqueta y campo. */
+    gap: 5px;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   8. CAMPOS DE ENTRADA Y LISTAS DESPLEGABLES
+   ============================================================ */
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #adc0ce;
+    border-radius: 6px;
+}
+
+
+/* ============================================================
+   9. BOTONES
+   ============================================================ */
+
+button {
+
+    /* Mostrar cursor de selección. */
+    cursor: pointer;
+
+    padding: 10px 16px;
+
+    /* Eliminar borde predeterminado. */
+    border: 0;
+
+    background: #195f8d;
+    color: white;
+
+    border-radius: 6px;
+
+    margin: 3px;
+}
+
+
+/* ============================================================
+   10. EFECTO AL PASAR EL CURSOR SOBRE LOS BOTONES
+   ============================================================ */
+
+button:hover {
+    background: #123f61;
+}
+
+
+/* ============================================================
+   11. BARRA SUPERIOR DE LA APLICACIÓN
+   ============================================================ */
+
+.top {
+
+    /* Organizar contenido horizontalmente. */
+    display: flex;
+
+    /* Separar elementos hacia los extremos. */
+    justify-content: space-between;
+
+    /* Alinear verticalmente los elementos. */
+    align-items: center;
+}
+
+
+/* ============================================================
+   12. CONTENEDOR DE LA TABLA
+   ============================================================ */
+
+.tablewrap {
+
+    /* Permitir desplazamiento horizontal si la tabla
+       supera el ancho disponible. */
+    overflow-x: auto;
+}
+
+
+/* ============================================================
+   13. TABLA DE RESERVAS
+   ============================================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+
+/* ============================================================
+   14. CELDAS Y ENCABEZADOS DE LA TABLA
+   ============================================================ */
+
+td,
+th {
+
+    /* Línea divisoria inferior. */
+    border-bottom: 1px solid #dce5ed;
+
+    padding: 9px;
+
+    text-align: left;
+}
+
+
+/* ============================================================
+   15. ENCABEZADOS DE LAS COLUMNAS
+   ============================================================ */
+
+th {
+    background: #edf3f7;
+}
+
+
+/* ============================================================
+   16. MENSAJES DEL SISTEMA
+   ============================================================ */
+
+#message {
+
+    font-weight: 600;
+
+    /* Conservar los saltos de línea y espacios relevantes
+       en los mensajes mostrados mediante JavaScript. */
+    white-space: pre-wrap;
+}

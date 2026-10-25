@@ -1,0 +1,16 @@
+import express from 'express';
+import helmet from 'helmet';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import reservasRouter from './modules/reservas/reservas.routes.js';
+import authRouter from './modules/auth/auth.routes.js';
+import {sameOrigin} from './shared/auth/session.js';
+import {errorHandler} from './shared/errors/errorHandler.js';
+const app=express();app.disable('x-powered-by');app.use(helmet());app.use(express.json({limit:'100kb'}));
+app.use('/api',sameOrigin);
+app.get('/api/health',(_req,res)=>res.json({success:true,data:{status:'ok'},message:'OK',errors:[]}));
+app.use('/api/auth',authRouter);app.use('/api/reservas',reservasRouter);
+app.use(express.static(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../public')));
+app.use((req,res)=>res.status(404).json({success:false,data:null,message:'Ruta no encontrada',errors:[{code:'NOT_FOUND'}]}));
+app.use(errorHandler);
+export default app;

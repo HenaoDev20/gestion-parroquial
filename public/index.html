@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!-- ========================================================
+         1. CONFIGURACIÓN GENERAL DEL DOCUMENTO
+         ======================================================== -->
+
+    <meta charset="utf-8">
+
+    <!-- Permite adaptar la interfaz a diferentes dispositivos -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Reservas parroquiales</title>
+
+    <!-- Hoja de estilos de la aplicación -->
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+
+    <!-- ========================================================
+         2. CONTENEDOR PRINCIPAL
+         ======================================================== -->
+
+    <main>
+
+        <!-- ====================================================
+             3. ENCABEZADO DE LA APLICACIÓN
+             ==================================================== -->
+
+        <header>
+
+            <h1>Gestión de Reservas Parroquiales</h1>
+
+            <p>
+                Demostración de arquitectura modular Node.js / Express
+            </p>
+
+        </header>
+
+
+        <!-- ====================================================
+             4. SECCIÓN DE INICIO DE SESIÓN
+             ==================================================== -->
+
+        <section id="login">
+
+            <h2>Iniciar sesión</h2>
+
+            <form id="loginForm">
+
+                <!-- Correo electrónico del usuario -->
+                <label>
+                    Correo
+
+                    <input
+                        name="correo"
+                        type="email"
+                        required
+                    >
+                </label>
+
+
+                <!-- Contraseña del usuario -->
+                <label>
+                    Contraseña
+
+                    <input
+                        name="password"
+                        type="password"
+                        required
+                    >
+                </label>
+
+
+                <!-- Enviar credenciales para autenticación -->
+                <button>
+                    Ingresar
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ====================================================
+             5. SECCIÓN PRINCIPAL DE LA APLICACIÓN
+             ==================================================== -->
+
+        <!--
+            Esta sección permanece oculta inicialmente.
+
+            JavaScript elimina el atributo hidden después
+            de que el usuario inicia sesión correctamente.
+        -->
+
+        <section id="app" hidden>
+
+            <!-- ================================================
+                 5.1 INFORMACIÓN DE LA SESIÓN
+                 ================================================ -->
+
+            <div class="top">
+
+                <!-- Información del usuario autenticado -->
+                <p id="session"></p>
+
+                <!-- Cerrar sesión -->
+                <button
+                    id="logout"
+                    type="button"
+                >
+                    Salir
+                </button>
+
+            </div>
+
+
+            <!-- ================================================
+                 5.2 FORMULARIO DE SOLICITUD DE RESERVA
+                 ================================================ -->
+
+            <h2>Solicitar un espacio</h2>
+
+            <form id="bookingForm">
+
+                <!-- Selección de espacio parroquial -->
+                <label>
+                    Espacio
+
+                    <select
+                        name="espacioId"
+                        id="espacio"
+                        required
+                    >
+                    </select>
+
+                </label>
+
+
+                <!-- Nombre de la persona que solicita -->
+                <label>
+                    Nombre
+
+                    <input
+                        name="solicitante"
+                        required
+                        maxlength="150"
+                    >
+
+                </label>
+
+
+                <!-- Correo electrónico del solicitante -->
+                <label>
+                    Correo
+
+                    <input
+                        name="correo"
+                        type="email"
+                        required
+                        maxlength="200"
+                    >
+
+                </label>
+
+
+                <!-- Motivo de la reserva -->
+                <label>
+                    Motivo
+
+                    <input
+                        name="motivo"
+                        required
+                        maxlength="300"
+                    >
+
+                </label>
+
+
+                <!-- Fecha y hora de inicio -->
+                <label>
+                    Inicio
+
+                    <input
+                        name="inicio"
+                        type="datetime-local"
+                        required
+                    >
+
+                </label>
+
+
+                <!-- Fecha y hora de finalización -->
+                <label>
+                    Fin
+
+                    <input
+                        name="fin"
+                        type="datetime-local"
+                        required
+                    >
+
+                </label>
+
+
+                <!-- ============================================
+                     BOTONES DEL FORMULARIO
+                     ============================================ -->
+
+                <!-- Consultar disponibilidad sin enviar formulario -->
+                <button
+                    type="button"
+                    id="check"
+                >
+                    Consultar disponibilidad
+                </button>
+
+
+                <!-- Enviar solicitud de reserva -->
+                <button>
+                    Solicitar
+                </button>
+
+            </form>
+
+
+            <!-- ================================================
+                 5.3 LISTADO DE RESERVAS
+                 ================================================ -->
+
+            <h2>Reservas</h2>
+
+
+            <!-- Actualizar información de las reservas -->
+            <button
+                id="refresh"
+                type="button"
+            >
+                Actualizar lista
+            </button>
+
+
+            <!-- Contenedor de tabla para desplazamiento horizontal -->
+            <div class="tablewrap">
+
+                <table>
+
+                    <!-- Encabezado de la tabla -->
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Espacio</th>
+                            <th>Solicitante</th>
+                            <th>Inicio</th>
+                            <th>Fin</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <!-- ========================================
+                         CUERPO DINÁMICO DE LA TABLA
+                         ======================================== -->
+
+                    <!--
+                        Las filas se agregan dinámicamente
+                        desde app.js con los datos obtenidos
+                        de la API REST.
+                    -->
+
+                    <tbody id="tbody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             6. MENSAJES DEL SISTEMA
+             ==================================================== -->
+
+        <!--
+            Este elemento muestra mensajes de éxito,
+            advertencia o error.
+
+            role="status" y aria-live="polite" permiten
+            anunciar cambios a tecnologías de asistencia.
+        -->
+
+        <p
+            id="message"
+            role="status"
+            aria-live="polite"
+        >
+        </p>
+
+    </main>
+
+
+    <!-- ========================================================
+         7. ARCHIVO JAVASCRIPT PRINCIPAL
+         ======================================================== -->
+
+    <!--
+        type="module" permite utilizar import/export
+        y ejecuta el script después de procesar el HTML.
+    -->
+
+    <script
+        type="module"
+        src="/app.js"
+    >
+    </script>
+
+</body>
+
+</html>
