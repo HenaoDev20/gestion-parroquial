@@ -1,3 +1,4 @@
+
 # Sistema Integrado de Gestión Parroquial — Base de arquitectura
 
 **Plantilla académica de referencia**, no aplicación terminada ni apta para producción. Mantiene el stack propuesto: JavaScript ES Modules, Node.js, Express, PostgreSQL y API REST. Arquitectura **cliente-servidor de tres capas** y backend **monolítico modular**, con `route -> controller -> service -> repository -> database`.
@@ -73,3 +74,6 @@ npm test
 4. Se debe agregar gestión real de usuarios, trazabilidad de cambios, notificaciones, respaldos, protección de archivos, validaciones exhaustivas, gestión de secretos, protección frente a abuso y pruebas de integración antes del despliegue.
 5. La propuesta académica se limita al Templo Principal y Salón Parroquial. Una arquitectura preparada para escalar **no significa** que esta plantilla sea un sistema nacional listo para operar.
 6. No se incluye frontend operativo: se deja documentada su capa, para desarrollarla posteriormente con HTML/CSS/JavaScript como propusieron los estudiantes.
+
+
+
